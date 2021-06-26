@@ -7,7 +7,7 @@
  DDNRuntime(Delphi .NET Runtime)  
  
 ----  
- **温馨提示：当前还未对外正式发布。**    
+ **温馨提示：当前正在内测试中。**    
 ----  
  
  **这不是一个开源和免费的项目。这里只存放一些示例。**  
@@ -17,14 +17,20 @@
 * 不需要COM的支持。
 * 使用非常的简单，只需要在Delphi中申明.NET的类型和方法即可。
 * 专门的翻译工具，输入一个.NET的程序集dll，即可输出一个或者多个Delphi导入单元。
-* 支持泛型类接口和普通接口。
+* 支持接口类型（含泛型接口）。
 * 支持动态数组（一维数组）。
+* 支持委托类型。
  
 ## 要求
 
-* .NET Framework v4.0 
-* vs2017运行库(msvcp140.dll, vcruntime140.dll).
-* Delphi Unicode版本且支持System.Rtti。 
+* [.NET Framework v4.0](https://www.microsoft.com/zh-cn/download/details.aspx?id=17851)。
+* [VC++ 2015运行库(msvcp140.dll, vcruntime140.dll)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
+* 最低要求`Rad Studio XE3`。
+
+## 暂不支持
+
+* 泛型类型（不含泛型接口）。
+
 
 ## 使用方法：
 
@@ -42,7 +48,7 @@ uses
   
 implementation
 
-procedure TestSystemMemoryStream;
+procedure TestMemoryStream;
 var
   LMem: DNMemoryStream;
   LBytes: TArray<Byte>;
@@ -65,7 +71,7 @@ begin
   Writeln;
 end;
 
-procedure TestSystemType;
+procedure TestReflection;
 var
   LType: DNType;
   LMethods: TArray<DNMethodInfo>;
@@ -74,7 +80,8 @@ var
   LP: DNParameterInfo;
   I: Integer;
 begin
-  LType := TDNType.DNClass.GetType('System.IO.MemoryStream');
+  LType := TDNType.GetType<DNMemoryStream>();
+ // LType := TDNType.DNClass.GetType('System.IO.MemoryStream');
   Writeln('LType ptr=', NativeUint(LType));
   if LType <> nil then
   begin
@@ -95,55 +102,6 @@ begin
       Writeln('');
     end;
   end;
-end;
-
-
-procedure TestPowDLLCode;
-var
-  LDoc: DNPowderFileTypes;
-  LObj: DNObject;
-  LType: DNType;
-  Y, LStart, LStep, LStop: DNFieldInfo;
-  YV: DNArray;
-  LStartV, LStepV, LStopV: Single;
-//  YV, LStartV, LStepV, LStopV: DNObject;
-begin
-  Writeln('PowDLL.dll: ', LongWord( LoadAssemblyModule(ExtractFilePath(ParamStr(0)) + 'PowDLL.dll')));
-  LDoc := TDNPowderFileTypes.Create;
-  LObj := nil;
-  Writeln('Result:', LDoc.LoadDataFromFile('1.raw', LObj, DNPowderFileTypes_ShowErrors.ShowErr));
-  if LObj <> nil then
-  begin
-     Writeln('LObj.ToString: ', LObj.ToString);
-     LType := LObj.GetType;
-     Y := LType.GetField('y');
-     if Y = nil then
-        Y := LType.GetField('Y');
-      LStart := LType.GetField('LStart');
-      LStep := LType.GetField('LStep');
-      LStop :=  LType.GetField('LStop');
-      Writeln(Format('Y=%p, LStart=%p, LStep=%p, LStop=%p',
-       [Pointer(Y), Pointer(LStart), Pointer(LStep), Pointer(LStop)]));
-
-
-//      YV := Y.GetValue(LObj);
-//      LStartV := LStart.GetValue(LObj);
-//      LStepV := LStep.GetValue(LObj);
-//      LStopV := LStop.GetValue(LObj);
-
-      YV := TDNArray.Wrap(Y.GetValue(LObj));
-      LStartV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStart.GetValue(LObj)));
-      LStepV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStep.GetValue(LObj)));
-      LStopV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStop.GetValue(LObj)));
-
-//       Writeln(Format('YV=%p, LStartV=%s, LStepV=%s, LStopV=%s',
-//       [Pointer(YV), Pointer(LStartV), Pointer(LStepV), Pointer(LStopV)]));
-
-       Writeln(Format('YV=%d, LStartV=%f, LStepV=%f, LStopV=%f',
-       [YV.Length, LStartV, LStepV, LStopV]));
-
-  end;
-  //Writeln('Result:', LDoc.DoFileConversion('1.raw', '1.raw.xy', DNShowErrors.DontShowErr));
 end;
 
 end.

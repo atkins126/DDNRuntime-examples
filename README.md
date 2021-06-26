@@ -7,7 +7,7 @@
  DDNRuntime(Delphi .NET Runtime)  
  
  ----  
- **Reminder: It has not been officially released yet.**    
+ **Reminder: alpha test.**    
  ----  
  
  **This is not an open source and free project. Only examples are stored here.**  
@@ -17,14 +17,20 @@
 * No need for COM support.
 * It is very simple to use, just declare the type and method of .NET in Delphi.
 * Dedicated translation tool, input a .NET assembly dll, output one or more Delphi import units.
-* Support generic interface types and interfaces.
+* Support interface types (including generic interface).
 * Support dynamic array (one-dimensional array).
+* Support Delegate type.
  
 ## Requires
 
-* .NET Framework v4.0 
-* vs2017 runtime library(msvcp140.dll, vcruntime140.dll).
-* Delphi Unicode version and support System.Rtti. 
+* [.NET Framework v4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17851). 
+* [Visual C++ Redistributable for Visual Studio 2015(msvcp140.dll, vcruntime140.dll)](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
+* The minimum requirement is `Rad Studio XE3`.
+
+## Not supported
+
+* Generic type (excluding generic interface).
+
 
 ## Usage:
 
@@ -42,7 +48,7 @@ uses
   
 implementation
 
-procedure TestSystemMemoryStream;
+procedure TestMemoryStream;
 var
   LMem: DNMemoryStream;
   LBytes: TArray<Byte>;
@@ -65,7 +71,7 @@ begin
   Writeln;
 end;
 
-procedure TestSystemType;
+procedure TestReflection;
 var
   LType: DNType;
   LMethods: TArray<DNMethodInfo>;
@@ -74,7 +80,8 @@ var
   LP: DNParameterInfo;
   I: Integer;
 begin
-  LType := TDNType.DNClass.GetType('System.IO.MemoryStream');
+  LType := TDNType.GetType<DNMemoryStream>();
+ // LType := TDNType.DNClass.GetType('System.IO.MemoryStream');
   Writeln('LType ptr=', NativeUint(LType));
   if LType <> nil then
   begin
@@ -97,54 +104,6 @@ begin
   end;
 end;
 
-
-procedure TestPowDLLCode;
-var
-  LDoc: DNPowderFileTypes;
-  LObj: DNObject;
-  LType: DNType;
-  Y, LStart, LStep, LStop: DNFieldInfo;
-  YV: DNArray;
-  LStartV, LStepV, LStopV: Single;
-//  YV, LStartV, LStepV, LStopV: DNObject;
-begin
-  Writeln('PowDLL.dll: ', LongWord( LoadAssemblyModule(ExtractFilePath(ParamStr(0)) + 'PowDLL.dll')));
-  LDoc := TDNPowderFileTypes.Create;
-  LObj := nil;
-  Writeln('Result:', LDoc.LoadDataFromFile('1.raw', LObj, DNPowderFileTypes_ShowErrors.ShowErr));
-  if LObj <> nil then
-  begin
-     Writeln('LObj.ToString: ', LObj.ToString);
-     LType := LObj.GetType;
-     Y := LType.GetField('y');
-     if Y = nil then
-        Y := LType.GetField('Y');
-      LStart := LType.GetField('LStart');
-      LStep := LType.GetField('LStep');
-      LStop :=  LType.GetField('LStop');
-      Writeln(Format('Y=%p, LStart=%p, LStep=%p, LStop=%p',
-       [Pointer(Y), Pointer(LStart), Pointer(LStep), Pointer(LStop)]));
-
-
-//      YV := Y.GetValue(LObj);
-//      LStartV := LStart.GetValue(LObj);
-//      LStepV := LStep.GetValue(LObj);
-//      LStopV := LStop.GetValue(LObj);
-
-      YV := TDNArray.Wrap(Y.GetValue(LObj));
-      LStartV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStart.GetValue(LObj)));
-      LStepV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStep.GetValue(LObj)));
-      LStopV := TDNDecimal.DNClass.ToSingle(TDNDecimal.Wrap(LStop.GetValue(LObj)));
-
-//       Writeln(Format('YV=%p, LStartV=%s, LStepV=%s, LStopV=%s',
-//       [Pointer(YV), Pointer(LStartV), Pointer(LStepV), Pointer(LStopV)]));
-
-       Writeln(Format('YV=%d, LStartV=%f, LStepV=%f, LStopV=%f',
-       [YV.Length, LStartV, LStepV, LStopV]));
-
-  end;
-  //Writeln('Result:', LDoc.DoFileConversion('1.raw', '1.raw.xy', DNShowErrors.DontShowErr));
-end;
 
 end.
   
