@@ -24,7 +24,7 @@
 ## 要求
 
 * [.NET Framework v4.0](https://www.microsoft.com/zh-cn/download/details.aspx?id=17851)。
-* [VC++ 2015运行库(msvcp140.dll, vcruntime140.dll)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
+* [VC++ 2015运行库(v140)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
 * 最低要求`Rad Studio XE3`。
 
 ## 暂不支持
@@ -43,8 +43,7 @@ interface
 uses
   System.SysUtils,
   DDN.Runtime,
-  DDN.mscorlib,
-  DDN.PowDLL;
+  DDN.mscorlib;
   
 implementation
 
@@ -80,7 +79,7 @@ var
   LP: DNParameterInfo;
   I: Integer;
 begin
-  LType := TDNType.GetType<DNMemoryStream>();
+  LType := TDNMemoryStream.typeid;
  // LType := TDNType.DNClass.GetType('System.IO.MemoryStream');
   Writeln('LType ptr=', NativeUint(LType));
   if LType <> nil then
