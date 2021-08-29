@@ -5,33 +5,141 @@
 # DDNRuntime
 
  DDNRuntime(Delphi .NET Runtime)  
- 
+
+----
+ **Latest version: v0.1.16**    
  ----  
- **Reminder: alpha test.**    
- ----  
- 
+
  **This is not an open source and free project. Only examples are stored here.**  
- 
+
 ## Features
 
 * No need for COM support.
 * It is very simple to use, just declare the type and method of .NET in Delphi.
-* Dedicated translation tool, input a .NET assembly dll, output one or more Delphi import units.
+* Dedicated translation tool, input one or more .NET assembly DLL, output one or two Delphi import units.
 * Support interface types (including generic interface).
 * Support dynamic array (one-dimensional array).
 * Support Delegate type.
 * Support Event.
- 
+
 ## Requires
 
 * [.NET Framework v4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17851) . 
 * [Visual C++ Redistributable for Visual Studio 2015(v140)](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
-* The minimum requirement is `Rad Studio XE3`.
+* The minimum requirement is `Rad Studio XE3`(High version is recommended).
+* `DDNRuntimex86.dll` or `DDNRuntimex64.dll`.
 
 ## Not supported
 
 * Generic type (excluding generic interface).
 
+## Implementing features
+
+* Generic type.
+
+## Trial
+
+Get [DDNRuntime trial file](trial), copy the Duc file of the Delphi version you are using to `DDNRuntime\Win32` or `DDNRuntime\Win64`, copy `DDNRuntimex86.dll` to `examples\bin-Win32` or copy `DDNRuntimex64.dll` to `examples\bin-Win64`.
+
+## Buy
+
+* Contact: [KngStr](mailto:kngstr@qq.com)
+* Price List:
+
+| Subscription type  | Price / 1 Year(US dollar) | Renewal price/1 year |             explain              |
+| :----------------: | :-----------------------: | :------------------: | :------------------------------: |
+|  Personal Edition  |    $???? / 1 developer    |        $????         | Only DCU and DLL, no source code |
+| Enterprise Edition |   $???? / 10 developers   |        $????         | Only DCU and DLL, no source code |
+
+**Note: ??????? **
+
+## Exported public functions or class attributes and methods
+
+* DDN.Runtime (No source code)
+```pascal
+
+  IID_IDN_Name = '{B130231B-447A-48F5-B476-43FB07E99457}';
+  IID_IDN: TGUID = '{B130231B-447A-48F5-B476-43FB07E99457}';
+
+  IID_IDNClass_Name = '{E0CE1E32-5502-4F10-B263-6490F332E340}';
+  IID_IDNClass: TGUID = '{E0CE1E32-5502-4F10-B263-6490F332E340}';
+
+  IID_IDNInstance_Name = '{152F4F46-D220-423A-8135-FE6DF52A7932}';
+  IID_IDNInstance: TGUID = '{152F4F46-D220-423A-8135-FE6DF52A7932}';
+
+  IID_ILocalObject_Name = '{C4A9BE07-6DF9-448A-856F-9323768D36FE}';
+  IID_ILocalObject: TGUID = '{C4A9BE07-6DF9-448A-856F-9323768D36FE}';
+
+  IID_DNObject_Name = '{81C5FE01-027C-3E1C-98D5-DA9C9862AA21}';
+  IID_DNObjectClass_Name = '{52839F0D-B981-46B3-8A5C-5C7B1449E1EB}';
+  DNObject_FullName = 'System.Object';
+
+  /// <summary>
+  ///   The native pointer in DotNet is actually defined as a class to prevent being GC.
+  /// </summary>
+  DNNObject = type Pointer;
+
+  IDN = interface
+    [IID_IDN_Name]
+  end;
+
+  IDNClass = interface(IDN)
+    [IID_IDNClass_Name]
+  end;
+
+  IDNInstance = interface(IDN)
+    [IID_IDNInstance_Name]
+  end;
+
+  /// <summary>
+  ///   Used to get the saved DotNet instance
+  /// </summary>
+  ILocalObject = interface(IDN)
+    [IID_ILocalObject_Name]
+    function GetObjectID: DNNObject;
+  end;
+
+  /// <summary>
+  ///   Load assembly
+  /// </summary>
+  /// <param name="AFileName">An absolute assembly file name (full path)</param>
+  /// <param name="AIsSystem">When True, AFileName does not need to pass in an absolute path, the default value is False</param>
+  function LoadAssemblyModule(const AFileName: string; AIsSystem: Boolean = False): Boolean;
+  
+  /// <summary>
+  ///   Set whether to display the detailed information of .NET exceptions
+  /// </summary>
+  procedure SetShowDetailedExceptionMessage(AValue: Boolean);
+```
+* DDN.mscorlib.TDNGenericImport
+```pascal
+  /// <summary>
+  /// Return instance objects from DotNet native objects
+  /// </summary>
+  class function Wrap(ADNObjectID: DNNObject): T; overload; static;
+  /// <summary>
+  /// Return an object from an interface instance
+  /// </summary>
+  class function Wrap(const AInstance: IDNInstance): T; overload; static;
+  /// <summary>
+  /// Call the constructor or static method in DotNet.
+  /// </summary>
+  class property DNClass: C read GetDNClass;
+  /// <summary>
+  /// Create a DotNet instance object, call the default constructor
+  /// </summary>
+  class function Create: T; static;
+  /// <summary>
+  /// clsID means the native pointer of the instance in DotNet
+  /// </summary>
+  class function GetClsID: DNNObject; static;
+  /// <summary>
+  /// .NET type information
+  /// </summary>
+  class property typeid: DNType read GetTypeId;
+```
+
+**Note: All imported .NET types start with `DN`, such as `DNType`, and non-interface type importers start with `TDN`+.NET type, such as: `TDNType`. If the enumeration value name in .NET has the same name as the Delphi keyword, add `_` at the end of the name.**
 
 ## Usage:
 
