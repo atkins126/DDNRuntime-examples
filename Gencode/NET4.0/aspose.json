@@ -1,0 +1,52 @@
+{
+	"OutputDir": "J:\\MyGitRepo\\DDNRuntime\\TestGenCode",
+	"Lang": "zh-Hans",
+	"GenerateCommnet": true,
+	"AssemblyRoot":"J:\\MyGitRepo\\DDNRuntime\\Debug\\",
+	"Items": [
+		{
+			"Assembly": "Aspose.PDF.dll",
+			"IsMsLib": false,
+			"Units": [
+				{
+					"IsMain": true,
+					"ExcludeNamespaces": [],
+					"ExcludeTypes": []
+				}
+			]
+		},
+		{
+			"Assembly": "Aspose.Words.dll",
+			"IsMsLib": false,
+			"Units": [
+				{
+					"IsMain": true,
+					"ExcludeNamespaces": [],
+					"ExcludeTypes": []
+				}
+			]
+		},
+		{
+			"Assembly": "Aspose.Cells.dll",
+			"IsMsLib": false,
+			"Units": [
+				{
+					"IsMain": true,
+					"ExcludeNamespaces": [],
+					"ExcludeTypes": []
+				}
+			]
+		},
+		{
+			"Assembly": "Aspose.Slides.dll",
+			"IsMsLib": false,
+			"Units": [
+				{
+					"IsMain": true,
+					"ExcludeNamespaces": [],
+					"ExcludeTypes": []
+				}
+			]
+		}
+	]
+}

@@ -7,7 +7,12 @@
  DDNRuntime(Delphi .NET Runtime)  
 
 ----
- **最新版本：v0.1.16**    
+ **最新版本：v0.1.22**    
+  
+ #### 更新日志
+ 
+ [前往查看](NEWS-README.zh-CN.md)
+ 
 ----  
 
  **这不是一个开源和免费的项目。这里只存放一些示例。**  
@@ -17,29 +22,36 @@
 * 不需要COM的支持。
 * 使用非常的简单，只需要在Delphi中申明.NET的类型和方法即可。
 * 专门的翻译工具，输入一个或者多个.NET的程序集DLL，即可输出一个或者两个Delphi导入单元。
-* 支持接口类型（含泛型接口）。
+* 支持接口类型。
 * 支持动态数组（一维数组）。
 * 支持委托类型。
 * 支持委事件。
+* 泛型类型（有限的支持。暂不支持嵌套的泛型，比如：`DNICollection<DNKeyValuePair<TKey, TValue>>`这类的多层嵌套）。
+
 
 ## 要求
 
-* [.NET Framework v4.0](https://www.microsoft.com/zh-cn/download/details.aspx?id=17851)。
-* [VC++ 2015运行库(v140)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
+* .NET Framework 4.x  (仅支持Windows)
+
+	* [.NET Framework v4.0](https://www.microsoft.com/zh-cn/download/details.aspx?id=17851)。
+	* [VC++ 2015运行库(v140)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
+
+* .NET Core 2.1  ( 支持跨平台 )
+
+	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1) ，配置运行时版本见 [DDNC.InitNETCore](/NETCore2.1/src/DDNC.InitNETCore.pas)。
+
 * 最低要求`Rad Studio XE3`（推荐使用高版本）。
-* `DDNRuntimex86.dll`或`DDNRuntimex64.dll`。
 
 ## 暂不支持
 
-* 泛型类型（不含泛型接口）。
 
 ## 正在实现中的特性
 
-* Generic type.
+* 暂无。
 
 ## 试用  
 
-获取[DDNRuntime试用文件](trial)，复制你所使用的Delphi版本Duc文件到`DDNRuntime\Win32`或者`DDNRuntime\Win64`，复制`DDNRuntimex86.dll`到`examples\bin-Win32`或者复制`DDNRuntimex64.dll`到`examples\bin-Win64`。
+获取[DDNRuntime试用文件](https://github.com/ying32/DDNRuntime-examples/releases)，复制你所使用的Delphi版本Duc文件到`DDNRuntime\Win32`或者`DDNRuntime\Win64`。
 
 ## 购买
 
@@ -263,7 +275,7 @@ end;
 function CreateMainForm(): DNForm;
 var
   LButton: DNButton;
-  LR: DDN.Forms.Common.DNRectangle;
+  LR: DNRectangle;
   //LEdit: DNTextBox;
 begin
   LR := TDNScreen.DNClass.PrimaryScreen.Bounds;

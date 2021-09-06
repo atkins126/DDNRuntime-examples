@@ -7,7 +7,12 @@
  DDNRuntime(Delphi .NET Runtime)  
 
 ----
- **Latest version: v0.1.16**    
+ **Latest version: v0.1.22**    
+ 
+ #### What's news 
+ 
+ [Go to view](NEWS-README.md)
+ 
  ----  
 
  **This is not an open source and free project. Only examples are stored here.**  
@@ -17,29 +22,35 @@
 * No need for COM support.
 * It is very simple to use, just declare the type and method of .NET in Delphi.
 * Dedicated translation tool, input one or more .NET assembly DLL, output one or two Delphi import units.
-* Support interface types (including generic interface).
+* Support interface types.
 * Support dynamic array (one-dimensional array).
 * Support Delegate type.
 * Support Event.
+* Generic type (Limited support.Currently does not support nested generics, such as: `DNICollection<DNKeyValuePair<TKey, TValue>>` such multi-level nesting).
 
 ## Requires
 
-* [.NET Framework v4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17851) . 
-* [Visual C++ Redistributable for Visual Studio 2015(v140)](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
+* .NET Framework 4.x  ( Only supports Windows )
+
+	* [.NET Framework v4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17851) . 
+	* [Visual C++ Redistributable for Visual Studio 2015(v140)](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
+
+* .NET Core 2.1  ( Support cross-platform )
+
+	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1), Please refer to [DDNC.InitNETCore](/NETCore2.1/src/DDNC.InitNETCore.pas) to configure the runtime version.. 
+
 * The minimum requirement is `Rad Studio XE3`(High version is recommended).
-* `DDNRuntimex86.dll` or `DDNRuntimex64.dll`.
 
 ## Not supported
 
-* Generic type (excluding generic interface).
 
 ## Implementing features
 
-* Generic type.
+* Nothing.
 
 ## Trial
 
-Get [DDNRuntime trial file](trial), copy the Duc file of the Delphi version you are using to `DDNRuntime\Win32` or `DDNRuntime\Win64`, copy `DDNRuntimex86.dll` to `examples\bin-Win32` or copy `DDNRuntimex64.dll` to `examples\bin-Win64`.
+Get [DDNRuntime trial file](https://github.com/ying32/DDNRuntime-examples/releases), copy the Duc file of the Delphi version you are using to `DDNRuntime\Win32` or `DDNRuntime\Win64`.
 
 ## Buy
 
@@ -263,7 +274,7 @@ end;
 function CreateMainForm(): DNForm;
 var
   LButton: DNButton;
-  LR: DDN.Forms.Common.DNRectangle;
+  LR: DNRectangle;
   //LEdit: DNTextBox;
 begin
   LR := TDNScreen.DNClass.PrimaryScreen.Bounds;

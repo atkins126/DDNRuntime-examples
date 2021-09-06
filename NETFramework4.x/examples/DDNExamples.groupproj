@@ -1,0 +1,216 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A1B3FA00-E49A-41CC-9C79-35068F64989C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Reflection\ProReflection.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Stream\ProStream.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DES\ProDES.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PowDLL\ProPowDLL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Xml\ProXml.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AES\ProAES.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Hash\ProHash.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Web-HTTP\ProWeb_HTTP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WinForm\ProWinForm.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AsposeSDK\ProAspose.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WebDriver\ProWebDriver.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WinWPF\ProWPF.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Generics\ProGenerics.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DataTable\ProDataTable.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MSJScript\ProJScript.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MSSpeech\ProSpeech.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProReflection">
+        <MSBuild Projects="Reflection\ProReflection.dproj"/>
+    </Target>
+    <Target Name="ProReflection:Clean">
+        <MSBuild Projects="Reflection\ProReflection.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProReflection:Make">
+        <MSBuild Projects="Reflection\ProReflection.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProStream">
+        <MSBuild Projects="Stream\ProStream.dproj"/>
+    </Target>
+    <Target Name="ProStream:Clean">
+        <MSBuild Projects="Stream\ProStream.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProStream:Make">
+        <MSBuild Projects="Stream\ProStream.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProDES">
+        <MSBuild Projects="DES\ProDES.dproj"/>
+    </Target>
+    <Target Name="ProDES:Clean">
+        <MSBuild Projects="DES\ProDES.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProDES:Make">
+        <MSBuild Projects="DES\ProDES.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProPowDLL">
+        <MSBuild Projects="PowDLL\ProPowDLL.dproj"/>
+    </Target>
+    <Target Name="ProPowDLL:Clean">
+        <MSBuild Projects="PowDLL\ProPowDLL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProPowDLL:Make">
+        <MSBuild Projects="PowDLL\ProPowDLL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProXml">
+        <MSBuild Projects="Xml\ProXml.dproj"/>
+    </Target>
+    <Target Name="ProXml:Clean">
+        <MSBuild Projects="Xml\ProXml.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProXml:Make">
+        <MSBuild Projects="Xml\ProXml.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProAES">
+        <MSBuild Projects="AES\ProAES.dproj"/>
+    </Target>
+    <Target Name="ProAES:Clean">
+        <MSBuild Projects="AES\ProAES.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProAES:Make">
+        <MSBuild Projects="AES\ProAES.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProHash">
+        <MSBuild Projects="Hash\ProHash.dproj"/>
+    </Target>
+    <Target Name="ProHash:Clean">
+        <MSBuild Projects="Hash\ProHash.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProHash:Make">
+        <MSBuild Projects="Hash\ProHash.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProWeb_HTTP">
+        <MSBuild Projects="Web-HTTP\ProWeb_HTTP.dproj"/>
+    </Target>
+    <Target Name="ProWeb_HTTP:Clean">
+        <MSBuild Projects="Web-HTTP\ProWeb_HTTP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProWeb_HTTP:Make">
+        <MSBuild Projects="Web-HTTP\ProWeb_HTTP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProWinForm">
+        <MSBuild Projects="WinForm\ProWinForm.dproj"/>
+    </Target>
+    <Target Name="ProWinForm:Clean">
+        <MSBuild Projects="WinForm\ProWinForm.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProWinForm:Make">
+        <MSBuild Projects="WinForm\ProWinForm.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProAspose">
+        <MSBuild Projects="AsposeSDK\ProAspose.dproj"/>
+    </Target>
+    <Target Name="ProAspose:Clean">
+        <MSBuild Projects="AsposeSDK\ProAspose.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProAspose:Make">
+        <MSBuild Projects="AsposeSDK\ProAspose.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProWebDriver">
+        <MSBuild Projects="WebDriver\ProWebDriver.dproj"/>
+    </Target>
+    <Target Name="ProWebDriver:Clean">
+        <MSBuild Projects="WebDriver\ProWebDriver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProWebDriver:Make">
+        <MSBuild Projects="WebDriver\ProWebDriver.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProWPF">
+        <MSBuild Projects="WinWPF\ProWPF.dproj"/>
+    </Target>
+    <Target Name="ProWPF:Clean">
+        <MSBuild Projects="WinWPF\ProWPF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProWPF:Make">
+        <MSBuild Projects="WinWPF\ProWPF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProGenerics">
+        <MSBuild Projects="Generics\ProGenerics.dproj"/>
+    </Target>
+    <Target Name="ProGenerics:Clean">
+        <MSBuild Projects="Generics\ProGenerics.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProGenerics:Make">
+        <MSBuild Projects="Generics\ProGenerics.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProDataTable">
+        <MSBuild Projects="DataTable\ProDataTable.dproj"/>
+    </Target>
+    <Target Name="ProDataTable:Clean">
+        <MSBuild Projects="DataTable\ProDataTable.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProDataTable:Make">
+        <MSBuild Projects="DataTable\ProDataTable.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProJScript">
+        <MSBuild Projects="MSJScript\ProJScript.dproj"/>
+    </Target>
+    <Target Name="ProJScript:Clean">
+        <MSBuild Projects="MSJScript\ProJScript.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProJScript:Make">
+        <MSBuild Projects="MSJScript\ProJScript.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProSpeech">
+        <MSBuild Projects="MSSpeech\ProSpeech.dproj"/>
+    </Target>
+    <Target Name="ProSpeech:Clean">
+        <MSBuild Projects="MSSpeech\ProSpeech.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProSpeech:Make">
+        <MSBuild Projects="MSSpeech\ProSpeech.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProReflection;ProStream;ProDES;ProPowDLL;ProXml;ProAES;ProHash;ProWeb_HTTP;ProWinForm;ProAspose;ProWebDriver;ProWPF;ProGenerics;ProDataTable;ProJScript;ProSpeech"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProReflection:Clean;ProStream:Clean;ProDES:Clean;ProPowDLL:Clean;ProXml:Clean;ProAES:Clean;ProHash:Clean;ProWeb_HTTP:Clean;ProWinForm:Clean;ProAspose:Clean;ProWebDriver:Clean;ProWPF:Clean;ProGenerics:Clean;ProDataTable:Clean;ProJScript:Clean;ProSpeech:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProReflection:Make;ProStream:Make;ProDES:Make;ProPowDLL:Make;ProXml:Make;ProAES:Make;ProHash:Make;ProWeb_HTTP:Make;ProWinForm:Make;ProAspose:Make;ProWebDriver:Make;ProWPF:Make;ProGenerics:Make;ProDataTable:Make;ProJScript:Make;ProSpeech:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
