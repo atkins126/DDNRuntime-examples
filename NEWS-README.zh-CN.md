@@ -4,7 +4,24 @@
 
 ### 更新日志
 
-* v0.1.22  
+* v0.1.30
+   * 1、修复因低版Delphi编译器Bug造成无法编译`DDN.mscorlib.pas`，原bug描述`F2084 Internal error URW849 when unit names and type names are long enough`。
+   * 2、修复Windows下因低版本.NET Framework未携带.NET Standard库造成无法运行。
+   * 3、因编译器限制，调整泛型的支持，最低为XE8。
+   * 4、`DDN.InitNETFramework`和`DDNC.InitNETCore`增加自定义初始时加载程序集异常处理回调。
+
+* v0.1.25
+   * 1、调整`LoadAssemblyModule`，移除2个参数，现可传入程序集强名称或者全路径。
+
+* v0.1.24
+   * 1、修复返回接口类型时在某些会报异常。
+   * 2、`LoadAssemblyModule`添加一些一个参数，查询当前程序集是否已经加载。
+   * 3、修复查找类型时移除掉外部程序集不可视的类型。
+
+* v0.1.23
+   * 1、增加.NET Core x86支持。
+
+* v0.1.22
    * 1、增加.NET Core 2.1的支持。
    * 2、修复一些内存泄露问题。
    * 3、修复一些类型查找时类型名不正确问题。

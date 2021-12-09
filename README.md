@@ -4,10 +4,10 @@
 
 # DDNRuntime
 
- DDNRuntime(Delphi .NET Runtime)  
+ DDNRuntime(Delphi .NET Framework/.NET Core Runtime)  
 
 ----
- **Latest version: v0.1.22**    
+ **Latest version: v0.1.30**    
  
  #### What's news 
  
@@ -26,23 +26,27 @@
 * Support dynamic array (one-dimensional array).
 * Support Delegate type.
 * Support Event.
-* Generic type (Limited support.Currently does not support nested generics, such as: `DNICollection<DNKeyValuePair<TKey, TValue>>` such multi-level nesting).
+* Generic type (Limited support. Only XE8 and above are supported and nested generics are not supported yet, such as: `DNICollection<DNKeyValuePair<TKey, TValue>>` such multi-level nesting).
 
 ## Requires
 
 * .NET Framework 4.x  ( Only supports Windows )
 
-	* [.NET Framework v4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17851) . 
+	* [.NET Framework v4.x](https://dotnet.microsoft.com/download/dotnet-framework) . 
 	* [Visual C++ Redistributable for Visual Studio 2015(v140)](https://www.microsoft.com/en-us/download/details.aspx?id=48145).
 
-* .NET Core 2.1  ( Support cross-platform )
+* .NET Core  ( Plan to support cross-platform )
 
-	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1), Please refer to [DDNC.InitNETCore](/NETCore2.1/src/DDNC.InitNETCore.pas) to configure the runtime version.. 
+	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1), Please refer to [DDNC.InitNETCore](src/DDNC.InitNETCore.pas) to configure the runtime version.. 
+	* [NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1), Please refer to [DDNC.InitNETCore](src/DDNC.InitNETCore.pas) to configure the runtime version.. 
+	* [NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0), Please refer to [DDNC.InitNETCore](src/DDNC.InitNETCore.pas) to configure the runtime version.. 
 
-* The minimum requirement is `Rad Studio XE3`(High version is recommended).
+* The minimum requirement is `Rad Studio XE3`(Recommend XE8 or higher).
 
 ## Not supported
 
+* Two-dimensional array.
+* Nested generics.
 
 ## Implementing features
 
@@ -50,11 +54,11 @@
 
 ## Trial
 
-Get [DDNRuntime trial file](https://github.com/ying32/DDNRuntime-examples/releases), copy the Duc file of the Delphi version you are using to `DDNRuntime\Win32` or `DDNRuntime\Win64`.
+Get [DDNRuntime trial file](https://github.com/ying32/DDNRuntime-examples/releases), copy the DUC file of the Delphi version you are using to `src` directory.
 
 ## Buy
 
-* Contact: [KngStr](mailto:kngstr@qq.com)
+* Contact: [KngStr](mailto:kngstr@outlook.com)
 * Price List:
 
 | Subscription type  | Price / 1 Year(US dollar) | Renewal price/1 year |             explain              |
@@ -113,9 +117,8 @@ Get [DDNRuntime trial file](https://github.com/ying32/DDNRuntime-examples/releas
   /// <summary>
   ///   Load assembly
   /// </summary>
-  /// <param name="AFileName">An absolute assembly file name (full path)</param>
-  /// <param name="AIsSystem">When True, AFileName does not need to pass in an absolute path, the default value is False</param>
-  function LoadAssemblyModule(const AFileName: string; AIsSystem: Boolean = False): Boolean;
+  /// <param name="AFileName">An assembly qualified name or an absolute assembly file name (full path)</param>
+  function LoadAssemblyModule(const AFileName: string): Boolean;
   
   /// <summary>
   ///   Set whether to display the detailed information of .NET exceptions

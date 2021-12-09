@@ -4,10 +4,10 @@
 
 # DDNRuntime
 
- DDNRuntime(Delphi .NET Runtime)  
+ DDNRuntime(Delphi .NET Framework/.NET Core Runtime)  
 
 ----
- **最新版本：v0.1.22**    
+ **最新版本：v0.1.30**    
   
  #### 更新日志
  
@@ -26,24 +26,28 @@
 * 支持动态数组（一维数组）。
 * 支持委托类型。
 * 支持委事件。
-* 泛型类型（有限的支持。暂不支持嵌套的泛型，比如：`DNICollection<DNKeyValuePair<TKey, TValue>>`这类的多层嵌套）。
+* 泛型类型（有限的支持。只支持XE8及以上且暂不支持嵌套的泛型，比如：`DNICollection<DNKeyValuePair<TKey, TValue>>`这类的多层嵌套）。
 
 
 ## 要求
 
 * .NET Framework 4.x  (仅支持Windows)
 
-	* [.NET Framework v4.0](https://www.microsoft.com/zh-cn/download/details.aspx?id=17851)。
+	* [.NET Framework v4.x](https://dotnet.microsoft.com/download/dotnet-framework)。
 	* [VC++ 2015运行库(v140)](https://www.microsoft.com/zh-cn/download/details.aspx?id=48145)。
 
-* .NET Core 2.1  ( 支持跨平台 )
+* .NET Core ( 计划支持跨平台 )
 
-	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1) ，配置运行时版本见 [DDNC.InitNETCore](/NETCore2.1/src/DDNC.InitNETCore.pas)。
+	* [NET Core 2.1](https://dotnet.microsoft.com/download/dotnet/2.1) ，配置运行时版本见 [DDNC.InitNETCore](src/DDNC.InitNETCore.pas)。
+	* [NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1) ，配置运行时版本见 [DDNC.InitNETCore](src/DDNC.InitNETCore.pas)。
+	* [NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) ，配置运行时版本见 [DDNC.InitNETCore](src/DDNC.InitNETCore.pas)。
 
-* 最低要求`Rad Studio XE3`（推荐使用高版本）。
+* 最低要求`Rad Studio XE3`（推荐XE8或者更高版）。
 
 ## 暂不支持
 
+* 二维数组。
+* 嵌套类泛型。
 
 ## 正在实现中的特性
 
@@ -51,11 +55,11 @@
 
 ## 试用  
 
-获取[DDNRuntime试用文件](https://github.com/ying32/DDNRuntime-examples/releases)，复制你所使用的Delphi版本Duc文件到`DDNRuntime\Win32`或者`DDNRuntime\Win64`。
+获取[DDNRuntime试用文件](https://github.com/ying32/DDNRuntime-examples/releases)，复制你所使用的Delphi版本DCU文件到`src`目录下。
 
 ## 购买
 
-* 联系人：[KngStr](mailto:kngstr@qq.com)
+* 联系人：[KngStr](mailto:kngstr@outlook.com)
 * 价格表：
 
 | 订阅类型 | 价格/一年(人民币)  | 续订价格/1年(人民币) |        说明        |
@@ -114,9 +118,8 @@
   /// <summary>
   ///   加载程序集
   /// </summary>
-  /// <param name="AFileName">一个绝对的程序集文件名（全路径）</param>
-  /// <param name="AIsSystem">当为True时，AFileName不需要传入绝对路径，默认值为False</param>
-  function LoadAssemblyModule(const AFileName: string; AIsSystem: Boolean = False): Boolean;
+  /// <param name="AFileName">一个程序集强名称或者一个绝对的程序集文件名（全路径）</param>
+  function LoadAssemblyModule(const AFileName: string): Boolean;
   
   /// <summary>
   ///   设置是否显示.NET异常的详细信息

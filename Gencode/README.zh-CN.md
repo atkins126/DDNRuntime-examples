@@ -3,9 +3,31 @@
 -----
 
 命令行：  
+
+* .NET Framework
+
 ```
-GenCode net4.0.json
+GenCodeNET net4.0.json
 ```
+
+* .NET Core
+
+```
+dotnet GenCodeNETC.dll netcore2.1.json
+```
+GenCodeNETC.runtimeconfig  
+```json
+{
+  "runtimeOptions": {
+    "tfm": "",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "2.1.30"  // 修改版本号运行指定的.NET Core版本。
+    }
+  }
+}
+```
+----
 
 json配置文件格式：   
 ```json
@@ -14,6 +36,7 @@ json配置文件格式：
    "Lang": "",                      // 生成的注释语言，比如：zh-Hans，可空，默认为en-US
    "GenerateCommnet": true,         // 是否生成注释，默认为false
    "AssemblyRoot": ""               // 程序集目录 
+   "NETVersion": "",                // .NET程序集的版本，一般只用于标准库中 
    "Items": [                       // 清单项目
        {
 	       "Assembly": "",          // 程序集(dll)的文件名或者全路径

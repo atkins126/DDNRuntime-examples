@@ -3,9 +3,31 @@
 -----
 
 Command Line: 
+
+* .NET Framework
+
 ```
-GenCode net4.0.json
+GenCodeNET net4.0.json
 ```
+
+* .NET Core
+
+```
+dotnet GenCodeNETC.dll netcore2.1.json
+```
+GenCodeNETC.runtimeconfig  
+```json
+{
+  "runtimeOptions": {
+    "tfm": "",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "2.1.30"  // Modify the version number to run the specified .NET Core version.
+    }
+  }
+}
+```
+----
 
 json configuration file format:  
 ```json
@@ -14,6 +36,7 @@ json configuration file format:
    "Lang": "",                      // The generated annotation language, such as: zh-Hans, can be empty, the default is en-US
    "GenerateCommnet": true,         // Whether to generate comments, the default is false
    "AssemblyRoot": ""               // assembly directory
+   "NETVersion": "",                // The version of the .NET assembly, generally only used in the standard library
    "Items": [                       // List item
        {
 	       "Assembly": "",          // The file name or full path of the assembly (dll)
